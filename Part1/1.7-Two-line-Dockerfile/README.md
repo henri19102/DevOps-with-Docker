@@ -11,3 +11,9 @@ $ docker run web-server
 [GIN-debug] GET    /*path                    --> server.Start.func1 (3 handlers)
 [GIN-debug] Listening and serving HTTP on :8080
 ```
+
+# 1.10: Ports open
+
+```
+docker run -p 8080:8080 web-server
+```
