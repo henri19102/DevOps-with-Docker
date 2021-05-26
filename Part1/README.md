@@ -1,3 +1,5 @@
+# All answers for Part1 exercises
+
 # 1.1: Getting started
 
 ```
@@ -92,11 +94,63 @@ You found the correct password. Secret message is:
 "This is the secret message"
 ```
 
+# 1.7: Two line Dockerfile
+
+```
+Check the 1.7 folder
+```
+
+# 1.8: Image for Script
+
+```
+Check the 1.8 folder
+```
+
 # 1.9: Volumes
 
 ```
 $ docker run -v "$(pwd)/text.log:/usr/src/app/text.log" devopsdockeruh/simple-web-service
 ```
 
+# 1.10: Ports open
+
+```
+docker run -p 8080:8080 web-server
+```
+
 # 1.11: Spring
 
+```
+done
+```
+
+# 1.12: Hello Frontend!
+
+```
+Check the 1.12 folder
+```
+
+# 1.13: Hello Backend!
+
+```
+Check the 1.13 folder
+```
+
+# 1.14: Environment
+
+```
+Check the 1.14 folder
+```
+
+# 1.15: Homework
+
+```
+Check the 1.15 folder
+dockerhub repository: https://hub.docker.com/r/henri19102/bloglist-app
+```
+
+# 1.16: Heroku
+
+```
+https://devops-with-docker-test.herokuapp.com/
+```
