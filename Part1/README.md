@@ -121,7 +121,7 @@ docker run -p 8080:8080 web-server
 # 1.11: Spring
 
 ```
-done
+Check the 1.11 folder
 ```
 
 # 1.12: Hello Frontend!
