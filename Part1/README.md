@@ -1,4 +1,4 @@
-# All answers for Part1 exercises
+# Part1 answers:
 
 # 1.1: Getting started
 
