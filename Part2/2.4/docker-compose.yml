@@ -1,0 +1,29 @@
+version: '3' 
+
+services: 
+    backend:  
+      image: example-backend
+      build: .
+      environment:
+        - REDIS_HOST=redis
+      ports: 
+        - 8080:8080
+      command: ["./server"]
+      container_name: backend
+
+    frontend:  
+      image: example-frontend
+      build: . 
+      ports: 
+        - 5000:5000 
+      command: ["serve", "-s", "-l", "5000", "build"]
+      container_name: frontend
+    
+    redis:  
+      image: redis
+      build: . 
+      ports: 
+        - 6379:6379
+      command: ["redis-server"]
+      restart: unless-stopped
+      container_name: redis
