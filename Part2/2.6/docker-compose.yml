@@ -1,0 +1,49 @@
+version: '3' 
+
+services: 
+
+    db:
+      image: postgres
+      ports: 
+        - 5432:5432
+      restart: unless-stopped
+      environment:
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: postgres
+      container_name: postgres
+      volumes:
+        - database:/var/lib/postgresql/data
+
+    backend:  
+      image: example-backend
+      build: . 
+      ports: 
+        - 8080:8080
+      environment:
+        - REDIS_HOST=redis
+        - POSTGRES_HOST=postgres
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=postgres
+      command: ["./server"]
+      container_name: backend
+
+
+    frontend:  
+      image: example-frontend
+      build: . 
+      ports: 
+        - 5000:5000 
+      command: ["serve", "-s", "-l", "5000", "build"]
+      container_name: frontend
+    
+    redis:  
+      image: redis
+      build: . 
+      ports: 
+        - 6379:6379
+      command: ["redis-server"]
+      restart: unless-stopped
+      container_name: redis
+  
+volumes:
+  database:
