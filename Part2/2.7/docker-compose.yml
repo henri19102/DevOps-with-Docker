@@ -1,0 +1,32 @@
+version: '3' 
+
+services: 
+
+    backend:  
+      image: kurkkumopo-backend
+      ports: 
+        - 5000:5000
+      command: ["python", "-u", "app.py"]
+      container_name: kurkkumopo-backend
+      volumes:
+        - model:/src/model
+
+
+    frontend:  
+      image: kurkkumopo-frontend
+      ports: 
+        - 3000:3000 
+      command: ["serve", "-s", "-l", "3000", "build"]
+      container_name: kurkkumopo-frontend
+    
+    training:  
+      image: kurkkumopo-training
+      command: ["python", "-u", "train.py"]
+      container_name: kurkkumopo-training
+      volumes:
+        - model:/src/model
+        - images:/src/imgs
+        
+volumes:
+  model:
+  images:
