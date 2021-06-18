@@ -1,0 +1,19 @@
+FROM golang:1.16-alpine
+
+EXPOSE 8080
+
+WORKDIR /go/src/app
+
+COPY . .
+
+ENV REQUEST_ORIGIN=http://localhost
+
+RUN apk add build-base \
+    && go build && go test ./... \
+    && apk del build-base \
+    && rm -rf /var/cache/apk/* \
+    && adduser -S appuser
+
+USER appuser
+
+CMD ["./server"]
