@@ -1,0 +1,25 @@
+FROM golang:1.16-alpine as build-stage
+
+WORKDIR /go/src/app
+
+COPY . .
+
+RUN apk add build-base \
+    && go build && go test ./...
+
+FROM alpine:3.14
+
+EXPOSE 8080
+
+WORKDIR /go/src/app
+
+COPY --from=build-stage /go/src/app/server /go/src/app/server
+
+ENV REQUEST_ORIGIN=http://localhost
+
+RUN rm -rf /var/cache/apk/* \
+    && adduser -S appuser
+
+USER appuser
+
+CMD ["./server"]
