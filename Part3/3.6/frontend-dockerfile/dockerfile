@@ -1,0 +1,25 @@
+FROM node:14 as build-stage
+
+WORKDIR /usr/src/app
+
+COPY . .
+
+RUN npm install && npm run build
+
+FROM alpine:3.14
+
+WORKDIR /usr/src/app
+
+COPY --from=build-stage /usr/src/app/build /usr/src/app/build
+
+EXPOSE 5000
+
+ENV REACT_APP_BACKEND_URL=http://localhost:8080
+
+RUN apk add nodejs-current npm && npm install -g serve \
+    && adduser -D appuser \
+    && rm -rf /var/cache/apk/*
+
+USER appuser
+
+CMD ["serve", "-s", "-l", "5000", "build"]
