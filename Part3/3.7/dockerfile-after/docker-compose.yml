@@ -1,0 +1,9 @@
+version: "3"
+
+services:
+  spring-project:
+    build: .
+    ports:
+      - 8080:8080
+    command: ["java", "-jar", "./target/docker-example-1.1.3.jar"]
+    container_name: spring-project
