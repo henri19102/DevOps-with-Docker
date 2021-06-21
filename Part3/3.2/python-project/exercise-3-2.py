@@ -3,8 +3,8 @@ import os
 
 def main():
    repo = "repo"
-   git_repository = input("Enter github repository url: ")
-   image_name = input("Enter docker image name (username/image_name), which will be pushed to docker hub: ")
+   git_repository = os.environ['REPOSITORY']
+   image_name = os.environ['IMAGE']
    git.Repo.clone_from(git_repository, repo)
    os.chdir(os.getcwd() + "/" + repo)
    find_files("Dockerfile",os.getcwd(), image_name)
