@@ -1,1 +1,1 @@
-# This course is an introductory course to Docker and docker-compose.
+# Here is answers for the DevOps with Docker course.

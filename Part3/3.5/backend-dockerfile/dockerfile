@@ -11,6 +11,7 @@ ENV REQUEST_ORIGIN=http://localhost
 RUN apk add build-base \
     && go build && go test ./... \
     && apk del build-base \
+    && rm -rf /go/pkg \
     && rm -rf /var/cache/apk/* \
     && adduser -S appuser
 
